@@ -1,21 +1,13 @@
-/*
-    SETUP
-*/
-var express = require('express');
-var app = express();
-PORT = 9124;
+const express = require('express');
+const path = require('path');
+const fs = require('fs')
 
-/*
-    ROUTES
-*/
-app.get('/', function(req, res)
-    {
-        res.sendFile('public/main.html', {root: __dirname })
-    });
+const http = require('http');
 
-/*
-    LISTENER
-*/
-app.listen(PORT, function(){
-    console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
-});
+const app = express();
+
+app.use(express.static('public'));
+
+const PORT = process.env.PORT || 3007;
+
+app.listen(PORT, () => console.log('server started on port:' + PORT));
