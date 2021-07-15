@@ -10,7 +10,7 @@ PORT = 9124;
 */
 app.get('/', function(req, res)
     {
-        res.sendFile('views/main.html', {root: __dirname })
+        res.sendFile('public/main.html', {root: __dirname })
     });
 
 /*
