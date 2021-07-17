@@ -2,8 +2,8 @@
   body {
     background-image: linear-gradient(
       to right,
-      #FeFeFe,
       orange,
+      #FeFeFe,
       #4000ff
     );
     border: 16px ridge black;
