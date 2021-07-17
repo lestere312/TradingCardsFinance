@@ -1,5 +1,10 @@
 <html>
 <style>
+  body {
+    background-color: #fefefe;
+    border: 16px ridge black;
+    border-radius: 20px;
+  }
   header {
     background-color: #4000ff;
     padding: 30px;
@@ -31,6 +36,15 @@
   td {
     border: 1px dotted black;
   }
+
+  form {
+    padding: 3px;
+    border: 1px solid black;
+  }
+
+  h3 {
+    margin: 4;
+  }
 </style>
 <link rel="stylesheet" href="styles.css">
 <header>
@@ -41,6 +55,7 @@
   <li>Account: Eric543</li>
   <li>Deck: Caravan</li>
   <li>Collection: main</li>
+  <li>Card List</li>
   <li><a href="#settings">Settings</a></li>
 </ul>
 
@@ -61,6 +76,7 @@ Rarity:	R<br>
 <img style="margin:1px;" src="tap.png">, Sacrifice Black Lotus: Add three mana of any one color to your mana pool.</td>
       <td>$144999.99</td>
       <td>NO</td>
+      <td><input type="submit" value="Remove"></td>
     </tr>
     <tr>
       <td>Bandlands</td>
@@ -71,7 +87,17 @@ Rarity:	R<br>
 <img style="margin:1px;" src="tap.png">: Add <img style="margin:1px;" src="mana_b.png">  or <img style="margin:1px;" src="mana_r.png"> to your mana pool.</td>
       <td>$7499.99</td>
       <td>YES</td>
+      <td><input type="submit" value="Remove"></td>
     </tr>
   </table>
+
+  <form>
+    <h3>Add Card</h3><br>
+    <label for="Card_Name">Card Name:</label>
+    <input type="text" id="Card_Name" name="Card_Name">
+    <label for="Quantity">Quantity:</label>
+    <input type="text" id="Quantity" name="Quantity">
+    <input type="submit" value="Submit">
+  </form>
 </body>
 </html>
