@@ -46,6 +46,12 @@
     border: 1px solid black;
   }
 
+  p {
+    font-size: 24px;
+    letter-spacing: 2px;
+    line-height: 30px;
+  }
+
   div {
     font-size: 25px;
     display: inline-block;
