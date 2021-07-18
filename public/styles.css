@@ -20,7 +20,7 @@
   ul {
     list-style-type: none;
     margin: 0;
-    padding: 20;
+    padding: 20px;
     overflow: hidden;
   }
 
@@ -42,8 +42,18 @@
   }
 
   form {
+    padding: 20px;
+    border: 1px solid black;
+  }
+
+  div {
+    font-size: 25px;
+    display: inline-block;
+    text-align: center;
+    width: 23%;
     padding: 3px;
     border: 1px solid black;
+    margin: 4;
   }
 
   h3 {
