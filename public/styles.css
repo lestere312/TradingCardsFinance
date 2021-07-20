@@ -80,7 +80,7 @@
 
   /* Style the search field */
   form.searchbar input[type=text] {
-    padding: 9px;
+    padding: 8px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
