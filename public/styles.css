@@ -74,41 +74,40 @@
   }
 
 
-  /* Add a black background color to the top navigation bar */
-  .topnav {
-    overflow: hidden;
-    background-color: #e9e9e9;
-  }
+ * {
+  box-sizing: border-box;
+}
 
-  /* Style the links inside the navigation bar */
-  .topnav a {
+  /* Style the search field */
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
     float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+    width: 80%;
+    background: #f1f1f1;
   }
 
-  /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  /* Style the "active" element to highlight the current page */
-  .topnav a.active {
-    background-color: #2196F3;
+  /* Style the submit button */
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
     color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
   }
 
-  /* Style the search box inside the navigation bar */
-  .topnav input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
+  form.example button:hover {
+    background: #0b7dda;
+  }
+
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
   }
