@@ -80,7 +80,7 @@
 
   /* Style the search field */
   form.example input[type=text] {
-    padding: 5px;
+    padding: 7px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
