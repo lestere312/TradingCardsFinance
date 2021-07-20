@@ -79,8 +79,8 @@
 }
 
   /* Style the search field */
-  form.example input[type=text] {
-    padding: 7px;
+  form.searchbar input[type=text] {
+    padding: 9px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
@@ -89,7 +89,7 @@
   }
 
   /* Style the submit button */
-  form.example button {
+  form.searchbar button {
     float: left;
     width: 20%;
     padding: 10px;
@@ -101,12 +101,12 @@
     cursor: pointer;
   }
 
-  form.example button:hover {
+  form.searchbar button:hover {
     background: #0b7dda;
   }
 
   /* Clear floats */
-  form.example::after {
+  form.searchbar::after {
     content: "";
     clear: both;
     display: table;
