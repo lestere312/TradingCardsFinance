@@ -78,6 +78,20 @@
   box-sizing: border-box;
 }
 
+.login{
+  position: absolute;
+  top: 20px;
+  right: 200px;
+  width: 180px;
+}
+
+.login2{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 180px;
+}
+
   /* Style the search field */
   form.searchbar input[type=text] {
     padding: 8px;
