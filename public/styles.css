@@ -83,6 +83,7 @@
   top: 20px;
   right: 200px;
   width: 180px;
+  background: #f1f1f180;
 }
 
 .login2{
@@ -90,6 +91,7 @@
   top: 20px;
   right: 20px;
   width: 180px;
+  background: #f1f1f180;
 }
 
   /* Style the search field */
