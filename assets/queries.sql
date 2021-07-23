@@ -56,6 +56,9 @@ AND deckID = 1
 -- Collections Page--
 --
 
+--
+INSERT INTO `CollectionCards` VALUES (:collecteionCardID,:collectionID,(SELECT cardID FROM `Cards` WHERE cardName =:nameInput),:quantityInput)
+
 --Name of each collection of user
 SELECT collectionName FROM `Collections`
 WHERE userID = 1
