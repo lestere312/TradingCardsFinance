@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS `Collections`;
 CREATE TABLE `Collections` (
   `collectionID` int(10) NOT NULL UNIQUE,
   `userID` int(10) NOT NULL,
-  `collection` varchar(20) NOT NULL UNIQUE,
+  `collectionName` varchar(20) NOT NULL UNIQUE,
   PRIMARY KEY (`collectionID`),
   KEY `userID` (`userID`),
   CONSTRAINT `Collections_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Accounts` (`userID`)
@@ -71,10 +71,13 @@ DROP TABLE IF EXISTS `CollectionCards`;
 
 CREATE TABLE `CollectionCards` (
   `collectionCardsID` int(10) NOT NULL UNIQUE,
-  `deckID` int(10) NOT NULL,
+  `collectionID` int(10) NOT NULL,
   `cardID` int(10) NOT NULL,
-  KEY `deckID` (`deckID`),
+  `quantity` int(4) NOT NULL,
+  KEY `collectionID` (`collectionID`),
   KEY `cardID` (`cardID`),
   CONSTRAINT `CollectionCards_ibfk_2` FOREIGN KEY (`cardID`) REFERENCES `Cards` (`cardID`),
-  CONSTRAINT `CollectionCards_ibfk_1` FOREIGN KEY (`deckID`) REFERENCES `Decks` (`deckID`)
+  CONSTRAINT `CollectionCards_ibfk_1` FOREIGN KEY (`collectionID`) REFERENCES `Collections` (`collectionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `CollectionCards` VALUES (1,1,1,3),(2,3,2,1),(3,2,4,2),(4,1,3,4), (5,4,2,1);
