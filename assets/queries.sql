@@ -1,3 +1,42 @@
+--****************
+-- Accounts Page--
+--
+
+--Main table info
+
+--****************
+-- Decks Page--
+--
+
+--Main table info
+
+--****************
+-- Collections Page--
+--
+
+--Main table info
+
+--****************
+-- Card Page--
+--
+
+--Main table info
+
+--****************
+-- Login Page--
+--
+
+--Main table info
+
+--****************
+-- Create Account Page--
+--
+
+--Main table info
+
+--****************
+--Others
+
 --
 --This hopefully tells you every card in all of one accounts decks
 --this should hopefully work for collections too.
