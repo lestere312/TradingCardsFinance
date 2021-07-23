@@ -46,3 +46,38 @@ CREATE TABLE `Cards` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `Cards`(`cardID`,`cardForSale`) VALUES (0000000001,1),(0000000002,0),(0000000003,0),(0000000004,1), (0000000005,NULL);
+
+DROP TABLE IF EXISTS `DeckCards`;
+
+CREATE TABLE `DeckCards` (
+  `deckCardsID` int(10) NOT NULL UNIQUE,
+  `deckID` int(10) NOT NULL,
+  `cardID` int(10) NOT NULL,
+  KEY `deckID` (`deckID`),
+  KEY `cardID` (`cardID`),
+  CONSTRAINT `DeckCards_ibfk_2` FOREIGN KEY (`cardID`) REFERENCES `Cards` (`cardID`),
+  CONSTRAINT `DeckCards_ibfk_1` FOREIGN KEY (`deckID`) REFERENCES `Decks` (`deckID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `CollectionCards`;
+
+CREATE TABLE `CollectionCards` (
+  `collectionCardsID` int(10) NOT NULL UNIQUE,
+  `deckID` int(10) NOT NULL,
+  `cardID` int(10) NOT NULL,
+  KEY `deckID` (`deckID`),
+  KEY `cardID` (`cardID`),
+  CONSTRAINT `CollectionCards_ibfk_2` FOREIGN KEY (`cardID`) REFERENCES `Cards` (`cardID`),
+  CONSTRAINT `CollectionCards_ibfk_1` FOREIGN KEY (`deckID`) REFERENCES `Decks` (`deckID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `CardDetails`;
+
+CREATE TABLE `CardDetails` (
+  `cardID` int(10) NOT NULL,
+  `cardName` varchar(20) NOT NULL UNIQUE,
+	`cardDescripstion` varchar(255) NOT NULL,
+  `cardPrice` float,
+  KEY `cardID` (`cardID`),
+  CONSTRAINT `CardDetails_ibfk_1` FOREIGN KEY (`cardID`) REFERENCES `Cards` (`cardID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
