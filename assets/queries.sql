@@ -27,7 +27,7 @@ WHERE userID = 1)
 -- Decks Page--
 --
 
---Name of each deck of user
+--Name of each deck
 SELECT deckName FROM `Decks`
 WHERE userID = 1
 
@@ -35,6 +35,17 @@ WHERE userID = 1
 SELECT SUM(quantity)
 FROM `DeckCards`
 WHERE deckID = 1
+
+--Delete Deck
+DELETE FROM 'DeckCards' WHERE deckID = 1;
+DELETE FROM 'Decks' WHERE deckID = 1
+
+--Create new Deck
+INSERT INTO Decks(deckID, userID, deckName) VALUES ('[value-1]','[value-2]','[value-3]')
+
+--Add Card
+INSERT INTO Decks(deckID, userID, deckName) VALUES('[value-1]','[value-2]','[value-3]')
+
 
 --Main table info
 SELECT * FROM `Cards`
@@ -100,6 +111,11 @@ SELECT * FROM `Cards`
 JOIN DeckCards ON Cards.cardID = DeckCards.cardID
 WHERE deckID IN(SELECT deckID  FROM `Decks`
 WHERE userID = 1)
+
+--Main table info
+SELECT * FROM `Cards`
+JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID
+AND CollectionID = 1
 
 --
 --Gets cards from specific deck

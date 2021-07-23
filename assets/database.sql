@@ -65,7 +65,7 @@ CREATE TABLE `DeckCards` (
   CONSTRAINT `DeckCards_ibfk_1` FOREIGN KEY (`deckID`) REFERENCES `Decks` (`deckID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `DeckCards` VALUES (1,1,1,3),(2,3,2,1),(3,2,4,2),(4,1,3,4), (5,4,2,1);
+INSERT INTO `DeckCards` VALUES (1,1,1,3),(2,3,2,1),(3,2,4,2),(4,1,3,4),(5,4,2,1);
 
 DROP TABLE IF EXISTS `CollectionCards`;
 
