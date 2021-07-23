@@ -3,9 +3,9 @@
 --
 
 -- Sum of unique cards
-SELECT SUM(quantity) FROM `Cards`
-JOIN DeckCards ON Cards.cardID = DeckCards.cardID
-WHERE deckID IN(SELECT deckID  FROM `Decks`
+SELECT COUNT(quantity) FROM `Cards`
+JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID
+WHERE CollectionID IN(SELECT CollectionID  FROM `Collections`
 WHERE userID = 1)
 
 --Number of Decks
