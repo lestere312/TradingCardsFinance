@@ -40,12 +40,15 @@ DROP TABLE IF EXISTS `Cards`;
 
 CREATE TABLE `Cards` (
   `cardID` int(10) NOT NULL UNIQUE,
+  `cardName` varchar(20) NOT NULL UNIQUE,
+  `cardDescripstion` varchar(255) NOT NULL,
+  `cardPrice` float,
   `cardForSale` bit,
   PRIMARY KEY (`cardID`),
   CONSTRAINT `Cards_ibfk_1` FOREIGN KEY (`cardID`) REFERENCES `CardDetails` (`cardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Cards`(`cardID`,`cardForSale`) VALUES (1,1),(2,0),(3,0),(4,1), (5,NULL);
+INSERT INTO `Cards` VALUES (1,'Black Lotus','0, Artifact, Sacrifice Black Lotus: Add three mana of any one color.', 22750.00, 1),(2,'inprogress','sad',NULL,0),(3,'inprogress2','sad',NULL,0),(4,'inprogress3','sad',NULL,1), (5,'inprogress4','sad',NULL,NULL);
 
 DROP TABLE IF EXISTS `DeckCards`;
 
