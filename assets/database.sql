@@ -29,12 +29,13 @@ DROP TABLE IF EXISTS `Decks`;
 CREATE TABLE `Decks` (
   `deckID` int(10) NOT NULL UNIQUE,
   `userID` int(10) NOT NULL,
+  `deckName` varchar(20) NOT NULL UNIQUE,
   PRIMARY KEY (`deckID`),
   KEY `userID` (`userID`),
   CONSTRAINT `Decks_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Accounts` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Decks`(`deckID`,`userID`) VALUES (1,2),(2,1),(3,2),(4,1), (5,1);
+INSERT INTO `Decks` VALUES (1,2,'Caravan'),(2,1,'Mill'),(3,2,'cake'),(4,1,'cake2'), (5,1,'cake3');
 
 DROP TABLE IF EXISTS `Cards`;
 
@@ -48,7 +49,7 @@ CREATE TABLE `Cards` (
   CONSTRAINT `Cards_ibfk_1` FOREIGN KEY (`cardID`) REFERENCES `CardDetails` (`cardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Cards` VALUES (1,'Black Lotus','0, Artifact, Sacrifice Black Lotus: Add three mana of any one color.', 22750.00, 1),(2,'inprogress','sad',NULL,0),(3,'inprogress2','sad',NULL,0),(4,'inprogress3','sad',NULL,1), (5,'inprogress4','sad',NULL,NULL);
+INSERT INTO `Cards` VALUES (1,'Black Lotus','0, Artifact, Sacrifice Black Lotus: Add three mana of any one color.', 22750.00, 1),(2,'Bandlands','Edition: Alpha Type: Land - Swamp Mountain Cast: Rarity: R : Add  or  to your mana pool.',7499.99,1),(3,'Mox Emerald','Edition: Alpha Type: Artifact Cast: Rarity: R , Add  to your mana pool.',32999.99,1), (4,'Wheel of Fortune','	Edition: Alpha Type: Sorcery Cast: Rarity: R Each player discards their hand, then draws seven cards.',9999.99,0),(5,'Birds of Paradise','Edition: Alpha Type: Creature Cast: Rarity: R Flying : Add one mana of any color to your mana pool. Stats: 0/1',7499.99,1);
 
 DROP TABLE IF EXISTS `DeckCards`;
 
