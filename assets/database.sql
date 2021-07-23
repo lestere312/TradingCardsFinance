@@ -11,7 +11,7 @@ CREATE TABLE `Accounts` (
   AUTO_INCREMENT*/
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Accounts`(`userID`,`userName`,`userPassword`,`userEmail`) values (00000000001, "Cake47", "eggs#1", "baking@yahoo.com"),(00000000002, "GnarlBurst", "comsicChicken4", "federalgrim@hotmail.com");
+INSERT INTO `Accounts`(`userID`,`userName`,`userPassword`,`userEmail`) VALUES (00000000001, "Cake47", "eggs#1", "baking@yahoo.com"),(00000000002, "GnarlBurst", "comsicChicken4", "federalgrim@hotmail.com");
 
 
 DROP TABLE IF EXISTS `Collections`;
@@ -24,7 +24,7 @@ CREATE TABLE `Collections` (
   CONSTRAINT `Collections_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Accounts` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Collections`(`collectionID`,`userID`) values (00000000001,00000000001),(00000000002,00000000001),(00000000003,00000000002),(00000000004,00000000002), (00000000005,00000000001);
+INSERT INTO `Collections` VALUES (00000000001,00000000001),(00000000002,00000000001),(00000000003,00000000002),(00000000004,00000000002), (00000000005,00000000001);
 
 
 DROP TABLE IF EXISTS `Decks`;
@@ -37,7 +37,7 @@ CREATE TABLE `Decks` (
   CONSTRAINT `Decks_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Accounts` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Decks`(`deckID`,`userID`) values (00000000001,00000000002),(00000000002,00000000001),(00000000003,00000000002),(00000000004,00000000001), (00000000005,00000000001);
+INSERT INTO `Decks`(`deckID`,`userID`) VALUES (00000000001,00000000002),(00000000002,00000000001),(00000000003,00000000002),(00000000004,00000000001), (00000000005,00000000001);
 
 DROP TABLE IF EXISTS `Decks`;
 
@@ -49,7 +49,7 @@ CREATE TABLE `Cards` (
   CONSTRAINT `Cards_ibfk_1` FOREIGN KEY (`cardID`) REFERENCES `CardDetails` (`cardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Cards`(`cardID`,`cardForSale`) values (00000000001,1),(00000000002,0),(00000000003,0),(00000000004,1), (00000000005,NULL);
+INSERT INTO `Cards`(`cardID`,`cardForSale`) VALUES (00000000001,1),(00000000002,0),(00000000003,0),(00000000004,1), (00000000005,NULL);
 
 
 DROP TABLE IF EXISTS `DeckCards`;
@@ -90,4 +90,4 @@ CREATE TABLE `CardDetails` (
   CONSTRAINT `CardDetails_ibfk_1` FOREIGN KEY (`cardID`) REFERENCES `Cards` (`cardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Cards`(`cardID`,`cardName`,`cardDescripstion`) values (00000000001,"Black Lotus","0, Artifact, Sacrifice Black Lotus: Add three mana of any one color.", 22750.00),(00000000002,"0","sad",NULL),(00000000003,"0","sad",NULL),(00000000004,"0","sad",NULL), (00000000005,"0","sad",NULL);
+INSERT INTO `Cards`(`cardID`,`cardName`,`cardDescripstion`) VALUES (00000000001,"Black Lotus","0, Artifact, Sacrifice Black Lotus: Add three mana of any one color.", 22750.00),(00000000002,"0","sad",NULL),(00000000003,"0","sad",NULL),(00000000004,"0","sad",NULL), (00000000005,"0","sad",NULL);
