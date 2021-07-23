@@ -16,12 +16,13 @@ DROP TABLE IF EXISTS `Collections`;
 CREATE TABLE `Collections` (
   `collectionID` int(10) NOT NULL UNIQUE,
   `userID` int(10) NOT NULL,
+  `collection` varchar(20) NOT NULL UNIQUE,
   PRIMARY KEY (`collectionID`),
   KEY `userID` (`userID`),
   CONSTRAINT `Collections_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Accounts` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Collections` VALUES (1,1),(2,1),(3,2),(4,2), (5,1);
+INSERT INTO `Collections` VALUES (1,1,'main'),(2,1,'main1'),(3,2,'main2'),(4,2,'main3'), (5,1,'main4');
 
 
 DROP TABLE IF EXISTS `Decks`;

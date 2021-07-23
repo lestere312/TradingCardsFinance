@@ -8,13 +8,27 @@
 -- Decks Page--
 --
 
+--Name of each deck of user
+SELECT deckName FROM `Decks`
+WHERE userID = 1
+
 --Main table info
+SELECT * FROM `Cards`
+JOIN DeckCards ON Cards.cardID = DeckCards.cardID
+AND deckID = 1
 
 --****************
 -- Collections Page--
 --
 
+--Name of each collection of user
+SELECT collectionName FROM `Collections`
+WHERE userID = 1
+
 --Main table info
+SELECT * FROM `Cards`
+JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID
+AND CollectionID = 1
 
 --****************
 -- Card Page--
