@@ -18,7 +18,12 @@ const PORT = process.env.PORT || 3007;
 
 app.get('/', function(req, res)
 {
-            return res.render('index');
+            return res.render('home');
+});
+
+app.get('/home', function(req, res)
+{
+            return res.render('home');
 });
 
 app.get('/cards', function(req, res)
