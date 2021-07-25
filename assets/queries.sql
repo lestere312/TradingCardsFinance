@@ -138,3 +138,14 @@ AND deckID = 1
 
 SELECT deckName FROM `Decks`
 WHERE userID = 1
+
+
+
+--From https://stackoverflow.com/questions/10377781/return-boolean-value-on-sql-select-statement
+SELECT CASE WHEN EXISTS (
+    SELECT *
+    FROM [User]
+    WHERE UserID = 20070022
+)
+THEN CAST(1 AS BIT)
+ELSE CAST(0 AS BIT) END
