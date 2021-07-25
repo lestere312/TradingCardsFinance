@@ -84,18 +84,32 @@ AND CollectionID = 1
 --
 
 --Main table info
-
+--Can delete last two lines if fresh page
+SELECT *
+FROM Cards
+WHERE cardName = 'Black Lotus'
+AND cardForSale = 1
 --****************
 -- Login Page--
 --
 
---Main table info
-
+--Selects user id of users that have username and password.
+SELECT userID
+FROM Accounts
+WHERE userName = 'cake47'
+AND userPassword = 'eggs#1'
 --****************
 -- Create Account Page--
 --
 
---Main table info
+--check if account already exists
+SELECT userID
+FROM Accounts
+WHERE userName = 'cake47'
+
+--Create New Account
+INSERT INTO `Accounts` VALUES (:userID,:userName,:userPassword,:userEmail)
+
 
 --****************
 --Others
@@ -138,14 +152,3 @@ AND deckID = 1
 
 SELECT deckName FROM `Decks`
 WHERE userID = 1
-
-
-
---From https://stackoverflow.com/questions/10377781/return-boolean-value-on-sql-select-statement
-SELECT CASE WHEN EXISTS (
-    SELECT *
-    FROM [User]
-    WHERE UserID = 20070022
-)
-THEN CAST(1 AS BIT)
-ELSE CAST(0 AS BIT) END
