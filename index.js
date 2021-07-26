@@ -14,17 +14,7 @@ app.set('view engine', '.hbs');
 
 app.use(express.static('public'));
 
-// Get an instance of mysql we can use in the app
-var mysql = require('mysql')
-
-// Create a 'connection pool' using the provided credentials
-var pool = mysql.createPool({
-    connectionLimit : 10,
-    host            : 'classmysql.engr.oregonstate.edu',
-    user            : 'cs340_lestere',
-    password        : 'tradingcards#21',
-    database        : 'cs340_lestere'
-})
+var db = require('./database/db-connector');
 
 const PORT = process.env.PORT || 3007;
 
@@ -48,8 +38,8 @@ app.get('/cards', function(req, res)
       query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%" AND cardForSale = 1`
     }else{
       query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%"`
-    }
-    pool.query(query1, function(error, rows, fields){
+    } 
+    db.pool.query(query1, function(error, rows, fields){
       let cardList = rows;
       console.log(cardList);
       return res.render('cards', {data: cardList});
@@ -58,7 +48,7 @@ app.get('/cards', function(req, res)
   else{
     let query1;
     query1 = "SELECT * FROM Cards;";
-    pool.query(query1, function(error, rows, fields){
+    db.pool.query(query1, function(error, rows, fields){
       let cardList = rows;
       console.log(cardList);
       return res.render('cards', {data: cardList});
