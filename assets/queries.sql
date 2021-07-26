@@ -23,10 +23,10 @@ WHERE collectionID IN(SELECT collectionID  FROM `Decks`
 WHERE userID = 1)
 
 --Create new Deck
-INSERT INTO Decks VALUES (:deckID, :userID, :deckName)
+INSERT INTO `Decks` (`userID`, `deckName`) VALUES (:userID, :deckName)
 
 --Create new Collection
-INSERT INTO `Collections` VALUES (:collectionID, :userID, :collectionName)
+INSERT INTO `Collections` (`userID`, `collectionName`) VALUES (:userID, :collectionName)
 
 --************************************************
 -- Decks Page--
@@ -48,7 +48,7 @@ DELETE FROM `Decks` WHERE deckID = 1
 
 
 --Add Card
-INSERT INTO DeckCards VALUES(:deckCardsID, :deckID, :cardID, :quantity)
+INSERT INTO DeckCards (`deckID`, `cardID`, `quantity`) VALUES(:deckID, :cardID, :quantity)
 
 --Delete card from deck
 DELETE FROM `DeckCards` WHERE deckCardsID = 1
@@ -63,7 +63,7 @@ AND deckID = 1
 --
 
 --
-INSERT INTO `CollectionCards` VALUES (:collecteionCardsID,:collectionID,(SELECT cardID FROM `Cards` WHERE cardName =:nameInput),:quantityInput)
+INSERT INTO `CollectionCards` (`collectionID`, `cardID`, `quantity`) VALUES (:collectionID,(SELECT cardID FROM `Cards` WHERE cardName =:nameInput),:quantityInput)
 
 --Name of each collection of user
 SELECT collectionName FROM `Collections`
@@ -126,7 +126,7 @@ FROM Accounts
 WHERE userName = 'cake47'
 
 --Create New Account
-INSERT INTO `Accounts` VALUES (:userID,:userName,:userPassword,:userEmail)
+INSERT INTO `Accounts` (`userName`, `userPassword`, `userEmail`) VALUES (:userName,:userPassword,:userEmail)
 
 
 --************************************************
