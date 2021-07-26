@@ -1,4 +1,4 @@
---****************
+--************************************************
 -- Accounts Page--
 --
 
@@ -22,8 +22,13 @@ JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID
 WHERE collectionID IN(SELECT collectionID  FROM `Decks`
 WHERE userID = 1)
 
+--Create new Deck
+INSERT INTO Decks VALUES (:deckID, :userID, :deckName)
 
---****************
+--Create new Collection
+INSERT INTO `Collections` VALUES (:collectionID, :userID, :collectionName)
+
+--************************************************
 -- Decks Page--
 --
 
@@ -40,8 +45,7 @@ WHERE deckID = 1
 DELETE FROM `DeckCards` WHERE deckID = 1;
 DELETE FROM `Decks` WHERE deckID = 1
 
---Create new Deck
-INSERT INTO Decks VALUES (:deckID, :userID, :deckName)
+
 
 --Add Card
 INSERT INTO DeckCards VALUES(:deckCardsID, :deckID, :cardID, :quantity)
@@ -54,7 +58,7 @@ SELECT * FROM `Cards`
 JOIN DeckCards ON Cards.cardID = DeckCards.cardID
 AND deckID = 1
 
---****************
+--************************************************
 -- Collections Page--
 --
 
@@ -89,7 +93,7 @@ JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID
 AND CollectionID = 1
 
 
---****************
+--************************************************
 -- Card Page--
 --
 
@@ -99,7 +103,11 @@ SELECT *
 FROM Cards
 WHERE cardName = 'Black Lotus'
 AND cardForSale = 1
---****************
+--better version
+--"cards that start with w and are for sale"
+SELECT * FROM Cards WHERE cardName LIKE "w%" AND cardForSale = 1
+SELECT * FROM Cards WHERE cardName LIKE "w%"
+--************************************************
 -- Login Page--
 --
 
@@ -108,7 +116,7 @@ SELECT userID
 FROM Accounts
 WHERE userName = 'cake47'
 AND userPassword = 'eggs#1'
---****************
+--************************************************
 -- Create Account Page--
 --
 
@@ -121,7 +129,7 @@ WHERE userName = 'cake47'
 INSERT INTO `Accounts` VALUES (:userID,:userName,:userPassword,:userEmail)
 
 
---****************
+--************************************************
 --Others
 
 --
