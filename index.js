@@ -25,18 +25,35 @@ app.get('/', function(req, res)
 
 app.get('/home', function(req, res)
 {
-  let query1;
-  query1 = "SELECT * FROM Cards;";
-  db.pool.query(query1, function(error, rows, fields){
-    let people = rows;
-    console.log(people);
-  })
             return res.render('home');
 });
 
 app.get('/cards', function(req, res)
 {
-            return res.render('cards');
+  console.log(Object.keys(req.query).length != 0);
+  if(Object.keys(req.query).length != 0){
+    let query1;
+    console.log(req.query.sale);
+    if(req.query.sale == 'on'){
+      query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%" AND cardForSale = 1`
+    }else{
+      query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%"`
+    } 
+    db.pool.query(query1, function(error, rows, fields){
+      let cardList = rows;
+      console.log(cardList);
+      return res.render('cards', {data: cardList});
+    })
+  }
+  else{
+    let query1;
+    query1 = "SELECT * FROM Cards;";
+    db.pool.query(query1, function(error, rows, fields){
+      let cardList = rows;
+      console.log(cardList);
+      return res.render('cards', {data: cardList});
+    })
+  }
 });
 
 app.get('/deck', function(req, res)
