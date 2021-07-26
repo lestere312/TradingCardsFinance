@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 3007;
 
 app.get('/', function(req, res)
 {
+
             return res.render('home');
 });
 
@@ -48,6 +49,19 @@ app.get('/login', function(req, res)
 
 app.get('/account', function(req, res)
 {
+  let data = req.query;
+  console.log(data);
+  let deckName = data.Deck_Name;
+  let collectionName = data.Collection_Name;
+  if(deckName != undefined){
+    console.log(deckName);
+  }
+
+  if(collectionName != undefined){
+    console.log(collectionName);
+  }
+
+
             return res.render('account');
 });
 
