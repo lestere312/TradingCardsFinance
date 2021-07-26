@@ -1,22 +1,17 @@
 var express = require('express');
-var app = express();
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-
-
-
 var exphbs = require('express-handlebars');
-const { query } = require('express');
-app.engine('.hbs', exphbs({
-    extname: ".hbs"
-}));
-app.set('view engine', '.hbs');
+
+var app = express();
+var port = process.env.PORT || 3009;
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
 
 app.use(express.static('public'));
 
 var db = require('./database/db-connector');
 
-const PORT = process.env.PORT || 3007;
 
 app.get('/', function(req, res)
 {
@@ -38,7 +33,7 @@ app.get('/cards', function(req, res)
       query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%" AND cardForSale = 1`
     }else{
       query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%"`
-    } 
+    }
     db.pool.query(query1, function(error, rows, fields){
       let cardList = rows;
       console.log(cardList);
@@ -94,4 +89,4 @@ app.get('/accountCreation', function(req, res)
             return res.render('accountCreation');
 });
 
-app.listen(PORT, () => console.log('server started on port:' + PORT));
+app.listen(port, () => console.log('server started on port:' + port));
