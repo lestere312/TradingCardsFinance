@@ -45,19 +45,19 @@ CREATE TABLE `Cards` (
   `cardName` varchar(20) NOT NULL UNIQUE,
   `cardDescripstion` varchar(255) NOT NULL,
   `cardPrice` float,
-  `cardForSale` bit,
+  `cardForSale` varchar(20) NOT NULL,
   PRIMARY KEY (`cardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Cards` VALUES (1,'Black Lotus','Edition: Alpha Type: Artifact 0, Artifact, Sacrifice Black Lotus: Add three mana of any one color.', 22750, 1),
-(2,'Bandlands','Edition: Alpha Type: Land - Swamp Mountain Cast: Rarity: R : Add  or  to your mana pool.',7500,1),
-(3,'Mox Emerald','Edition: Alpha Type: Artifact Cast: Rarity: R , Add  to your mana pool.',33000,1),
-(4,'Wheel of Fortune','Edition: Alpha Type: Sorcery Cast: Rarity: R Each player discards their hand, then draws seven cards.',10000,0),
-(5,'Birds of Paradise','Edition: Alpha Type: Creature Cast: Rarity: R Flying Tap: Aadd one mana of any color to your mana pool. Stats: 0/1',7500,1),
-(6,'Frozen Shade','Edition: Alpha Type: Creature Cast: Rarity: C Tap : Frozen Shade gets +1/+1 until end of turn. Stats: 0/1',65,1),
-(7,'Mountain','Edition: Alpha Type: Land Cast: Rarity: L',75,1),
-(8,'Swamp','Edition: Alpha Type: Land Cast: Rarity: L',80,0),
-(9,'Mind Twist','Edition: Alpha Type: Sorcery Cast: B X Rarity: R Target player discards X cards at random.',4600,0);
+INSERT INTO `Cards` VALUES (1,'Black Lotus','Edition: Alpha Type: Artifact 0, Artifact, Sacrifice Black Lotus: Add three mana of any one color.', 22750, 'yes'),
+(2,'Bandlands','Edition: Alpha Type: Land - Swamp Mountain Cast: Rarity: R : Add  or  to your mana pool.',7500,'yes'),
+(3,'Mox Emerald','Edition: Alpha Type: Artifact Cast: Rarity: R , Add  to your mana pool.',33000,'yes'),
+(4,'Wheel of Fortune','Edition: Alpha Type: Sorcery Cast: Rarity: R Each player discards their hand, then draws seven cards.',10000,'no'),
+(5,'Birds of Paradise','Edition: Alpha Type: Creature Cast: Rarity: R Flying Tap: Aadd one mana of any color to your mana pool. Stats: 0/1',7500,'yes'),
+(6,'Frozen Shade','Edition: Alpha Type: Creature Cast: Rarity: C Tap : Frozen Shade gets +1/+1 until end of turn. Stats: 0/1',65,'no'),
+(7,'Mountain','Edition: Alpha Type: Land Cast: Rarity: L',75,'no'),
+(8,'Swamp','Edition: Alpha Type: Land Cast: Rarity: L',80,'yes'),
+(9,'Mind Twist','Edition: Alpha Type: Sorcery Cast: B X Rarity: R Target player discards X cards at random.',4600,'yes');
 
 DROP TABLE IF EXISTS `DeckCards`;
 
