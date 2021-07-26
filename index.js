@@ -14,16 +14,23 @@ app.set('view engine', '.hbs');
 
 app.use(express.static('public'));
 
+var db = require('./database/db-connector');
+
 const PORT = process.env.PORT || 3007;
 
 app.get('/', function(req, res)
 {
-
-            return res.render('home');
+  return res.render('home');
 });
 
 app.get('/home', function(req, res)
 {
+  let query1;
+  query1 = "SELECT * FROM Cards;";
+  db.pool.query(query1, function(error, rows, fields){
+    let people = rows;
+    console.log(people);
+  })
             return res.render('home');
 });
 
