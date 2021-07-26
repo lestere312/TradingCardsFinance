@@ -6,11 +6,9 @@
 </ul>
 
 <body>
-  <div class = "DeckName">
-    {{deckName}}
-  </div>
+
   <div class="dropdown">
-  <span>Select Deck</span>
+  <span>DeckName : {{deckName}}</span>
   <div class="dropdown-content">
     {{#each deckList}}
     <form class="{{this.deckName}}" action="Deck">
