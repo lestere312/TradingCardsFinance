@@ -41,11 +41,13 @@ DELETE FROM `DeckCards` WHERE deckID = 1;
 DELETE FROM `Decks` WHERE deckID = 1
 
 --Create new Deck
-INSERT INTO Decks(deckID, userID, deckName) VALUES ('[value-1]','[value-2]','[value-3]')
+INSERT INTO Decks VALUES (:deckID, :userID, :deckName)
 
 --Add Card
-INSERT INTO Decks(deckID, userID, deckName) VALUES('[value-1]','[value-2]','[value-3]')
+INSERT INTO DeckCards VALUES(:deckCardsID, :deckID, :cardID, :quantity)
 
+--Delete card from deck
+DELETE FROM `DeckCards` WHERE deckCardsID = 1
 
 --Main table info
 SELECT * FROM `Cards`
