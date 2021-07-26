@@ -37,8 +37,8 @@ FROM `DeckCards`
 WHERE deckID = 1
 
 --Delete Deck
-DELETE FROM 'DeckCards' WHERE deckID = 1;
-DELETE FROM 'Decks' WHERE deckID = 1
+DELETE FROM `DeckCards` WHERE deckID = 1;
+DELETE FROM `Decks` WHERE deckID = 1
 
 --Create new Deck
 INSERT INTO Decks(deckID, userID, deckName) VALUES ('[value-1]','[value-2]','[value-3]')
@@ -57,7 +57,7 @@ AND deckID = 1
 --
 
 --
-INSERT INTO `CollectionCards` VALUES (:collecteionCardID,:collectionID,(SELECT cardID FROM `Cards` WHERE cardName =:nameInput),:quantityInput)
+INSERT INTO `CollectionCards` VALUES (:collecteionCardsID,:collectionID,(SELECT cardID FROM `Cards` WHERE cardName =:nameInput),:quantityInput)
 
 --Name of each collection of user
 SELECT collectionName FROM `Collections`
@@ -74,10 +74,18 @@ JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID
 WHERE collectionID IN(SELECT collectionID  FROM `Decks`
 WHERE collectionID = 1)
 
+--Delete Collection
+DELETE FROM `CollectionCards` WHERE collectionID = 1;
+DELETE FROM `Collections` WHERE collectionID = 1
+
+--Delete card from collection
+DELETE FROM `CollectionCards` WHERE collectionCardsID = 1
+
 --Main table info
 SELECT * FROM `Cards`
 JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID
 AND CollectionID = 1
+
 
 --****************
 -- Card Page--
