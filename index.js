@@ -53,7 +53,43 @@ app.get('/cards', function(req, res)
 
 app.get('/deck', function(req, res)
 {
-            return res.render('deck');
+  if(Object.keys(req.query).length != 0){
+    let query1;
+    query1 = `SELECT * FROM Cards JOIN DeckCards ON Cards.cardID = DeckCards.cardID AND deckID = ${req.query.deckName}`;
+    let query2;
+    query2 = `SELECT deckName, deckID FROM Decks WHERE userID = 2`;
+
+    query3 = `SELECT deckName FROM Decks WHERE deckID = ${req.query.deckName}`;
+
+    db.pool.query(query1, function(error, rows, fields){
+      let cardList = rows;
+      console.log(cardList);
+      db.pool.query(query2, function(error, rows, fields){
+        let decks = rows;
+        db.pool.query(query3, function(error, rows, fields){
+          let deck = rows;
+          console.log(deck[0].deckName);
+          let deckN = deck[0].deckName;
+          return res.render('deck', {data: cardList, deckList: decks, deckName: deckN});
+        })
+      })
+    })
+  }else{
+    let query1;
+    query1 = "SELECT * FROM `Cards` JOIN DeckCards ON Cards.cardID = DeckCards.cardID AND deckID = 1";
+
+    let query2;
+    query2 = "SELECT deckName, deckID FROM `Decks` WHERE userID = 2";
+
+
+    db.pool.query(query1, function(error, rows, fields){
+      let cardList = rows;
+      db.pool.query(query2, function(error, rows, fields){
+        let decks = rows;
+        return res.render('deck', {data: cardList, deckList: decks});
+      })
+    })
+  }
 });
 
 app.get('/collection', function(req, res)
