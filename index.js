@@ -2,6 +2,8 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 
 var app = express();
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 var port = process.env.PORT || 3009;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -51,6 +53,23 @@ app.get('/cards', function(req, res)
   }
 });
 
+app.post('/addDeck', function(req, res)
+{
+  let data = req.body;
+  let deckName = data.deck_name;
+  let userName = data.user;
+
+  query1 = `INSERT INTO Decks (userID, deckName) VALUES (${userName}, '${deckName}')`;
+  db.pool.query(query1, function(error, rows, fields){
+    if (error) {
+      console.log(error);
+    }else{
+      res.redirect('/Deck');
+    }
+  });
+
+});
+
 app.get('/deck', function(req, res)
 {
   if(Object.keys(req.query).length != 0){
@@ -85,7 +104,7 @@ app.get('/deck', function(req, res)
 
     let query3;
 
-    query3 = `SELECT deckName FROM Decks`;
+    query3 = `SELECT deckName FROM Decks ORDER BY deckID`;
 
     db.pool.query(query1, function(error, rows, fields){
       let cardList = rows;

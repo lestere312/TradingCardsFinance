@@ -39,6 +39,15 @@
     {{/each}}
   </table>
 
+  <form id="addDeck" method="post" action="addDeck">
+    <h3>Create New Deck</h3><br>
+    <label for="deck_name">Deck Name:</label>
+    <input type="text" id="deck_name" name="deck_name">
+    <label for="user">user#:</label>
+    <input type="text" id="user" name="user">
+    <input type="submit" value="Create">
+  </form>
+
   <form class="addCard" action="Deck">
     <h3>Add Card</h3><br>
     <label for="Card_Name">Card Name:</label>
