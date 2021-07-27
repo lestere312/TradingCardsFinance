@@ -32,7 +32,7 @@ app.get('/cards', function(req, res)
     let query1;
     console.log(req.query.sale);
     if(req.query.sale == 'on'){
-      query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%" AND cardForSale = 1`
+      query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%" AND cardForSale = 'yes'`
     }else{
       query1 = `SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%"`
     }
@@ -144,7 +144,6 @@ app.get('/account', function(req, res)
   if(collectionName != undefined){
     console.log(collectionName);
   }
-
 
             return res.render('account');
 });
