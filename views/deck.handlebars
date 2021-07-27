@@ -48,12 +48,19 @@
     <input type="submit" value="Create">
   </form>
 
-  <form class="addCard" action="Deck">
+  <form class="addCard" method="post" action="addCard">
     <h3>Add Card</h3><br>
     <label for="Card_Name">Card Name:</label>
     <input type="text" id="Card_Name" name="Card_Name">
     <label for="Quantity">Quantity:</label>
     <input type="text" id="Quantity" name="Quantity">
+    <label for="Deck">Deck:</label>
+    <select id="Deck" name="Deck">
+        <option value="">Select Deck</option>
+        {{#each deckList}}
+        <option value="{{this.deckID}}">{{this.deckName}}</option>
+        {{/each}}
+    </select>
     <input type="submit" value="Submit">
   </form>
 <tr>

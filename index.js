@@ -70,6 +70,36 @@ app.post('/addDeck', function(req, res)
 
 });
 
+app.post('/addCard', function(req, res)
+{
+  let data = req.body;
+  let cardName = data.Card_Name;
+  let quantity = data.Quantity;
+  let deck = data.Deck;
+  console.log(cardName);
+  console.log(quantity);
+  console.log(deck);
+  query1 = `SELECT cardID FROM Cards WHERE cardName =  '${cardName}'`;
+
+
+  db.pool.query(query1, function(error, rows, fields){
+    let temp = rows;
+    let cardid = temp[0].cardID;
+    console.log(cardid);
+    console.log("cardid");
+    query2 = `INSERT INTO DeckCards (deckID, cardID, quantity) VALUES(${deck},${cardid}, ${quantity})`;
+      db.pool.query(query2, function(error, rows, fields){
+        if (error) {
+          console.log(error);
+        }else{
+          res.redirect('/Deck');
+        }
+      })
+  })
+});
+
+
+
 app.get('/deck', function(req, res)
 {
   if(Object.keys(req.query).length != 0){
@@ -78,7 +108,7 @@ app.get('/deck', function(req, res)
     let query2;
     query2 = `SELECT deckName, deckID FROM Decks`;
     let query3;
-    query3 = `SELECT deckName FROM Decks ORDER BY deckID`;
+    query3 = `SELECT deckName, deckID FROM Decks ORDER BY deckID`;
 
 
     db.pool.query(query1, function(error, rows, fields){
@@ -88,9 +118,25 @@ app.get('/deck', function(req, res)
         let decks = rows;
         db.pool.query(query3, function(error, rows, fields){
           let deck = rows;
-          console.log(req.query.deckName);
-          let deckN = deck[req.query.deckName-1].deckName;
-            return res.render('deck', {data: cardList, deckList: decks, deckName: deckN});
+          //console.log(req.query.deckName);
+          //console.log("req.query.deckName");
+          //console.log(deck.deckID);
+          //console.log(deck);
+          //console.log(deck.length);
+          let answer;
+          for(let i = 0; i < deck.length; i++){
+            //console.log(deck[i]);
+            //console.log(deck[i].deckID);
+            //console.log(req.query.deckName);
+            //console.log(deck[i].deckID == req.query.deckName);
+            if(deck[i].deckID == req.query.deckName){
+              answer = deck[i];
+            }
+          }
+          //console.log("answer");
+          //console.log(answer);
+          //let deckN = deck[0].deckName;
+          return res.render('deck', {data: cardList, deckList: decks, deckName: answer.deckName});
         })
       })
     })
