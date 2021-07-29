@@ -5,5 +5,11 @@
   <td>{{this.cardDescripstion}}</td>
   <td>{{this.cardPrice}}</td>
   <td>{{this.cardForSale}}</td>
-  <th>{{this.cardForSale}}</th>
+  <td>
+    <form class="deleteButton" method="post" action="deleteCard">
+      <input type = "hidden" name = "cardName" value = "{{this.cardID}}" />
+      <input type = "hidden" name = "deckName" value = "{{this.deckID}}" />
+      <input type="submit" value="Delete">
+    </form>
+  </td>
 </tr>

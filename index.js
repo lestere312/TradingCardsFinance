@@ -78,8 +78,25 @@ app.post('/deleteDeck', function(req, res)
   console.log(data);
   console.log(deckName);
   console.log("deckName");
-  res.redirect('/Deck');
+  //res.redirect('/Deck');
   query1 = `DELETE FROM Decks WHERE deckID = ${deckName}`;
+  db.pool.query(query1, function(error, rows, fields){
+
+   })
+   res.redirect('/Deck');
+});
+
+app.post('/deleteCard', function(req, res)
+{
+  console.log("poop");
+  let data = req.body;
+  let cardName = data.cardName;
+  let deckName = data.deckName;
+  console.log(data);
+  console.log(deckName);
+  console.log("deletetee");
+  //res.redirect('/Deck');
+  query1 = `DELETE FROM DeckCards WHERE deckID = ${deckName} AND cardID = ${cardName}`;
   db.pool.query(query1, function(error, rows, fields){
 
    })
@@ -158,7 +175,7 @@ app.get('/deck', function(req, res)
     })
   }else{
     let query1;
-    query1 = "SELECT * FROM `Cards` JOIN DeckCards ON Cards.cardID = DeckCards.cardID AND deckID = 1";
+    query1 = "SELECT * FROM `Cards` JOIN DeckCards ON Cards.cardID = DeckCards.cardID AND deckID = 0";
 
     let query2;
 
