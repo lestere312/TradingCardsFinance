@@ -140,7 +140,8 @@ app.get('/deck', function(req, res)
     query2 = `SELECT deckName, deckID FROM Decks`;
     let query3;
     query3 = `SELECT deckName, deckID FROM Decks ORDER BY deckID`;
-
+    let query4;
+    query4 = `SELECT * FROM Cards`;
 
     db.pool.query(query1, function(error, rows, fields){
       let cardList = rows;
@@ -149,25 +150,28 @@ app.get('/deck', function(req, res)
         let decks = rows;
         db.pool.query(query3, function(error, rows, fields){
           let deck = rows;
-          //console.log(req.query.deckName);
-          //console.log("req.query.deckName");
-          //console.log(deck.deckID);
-          //console.log(deck);
-          //console.log(deck.length);
-          let answer;
-          for(let i = 0; i < deck.length; i++){
-            //console.log(deck[i]);
-            //console.log(deck[i].deckID);
+          db.pool.query(query4, function(error, rows, fields){
+            let cards = rows;
             //console.log(req.query.deckName);
-            //console.log(deck[i].deckID == req.query.deckName);
-            if(deck[i].deckID == req.query.deckName){
-              answer = deck[i];
+            //console.log("req.query.deckName");
+            //console.log(deck.deckID);
+            //console.log(deck);
+            //console.log(deck.length);
+            let answer;
+            for(let i = 0; i < deck.length; i++){
+              //console.log(deck[i]);
+              //console.log(deck[i].deckID);
+              //console.log(req.query.deckName);
+              //console.log(deck[i].deckID == req.query.deckName);
+              if(deck[i].deckID == req.query.deckName){
+                answer = deck[i];
+              }
             }
-          }
-          //console.log("answer");
-          //console.log(answer);
-          //let deckN = deck[0].deckName;
-          return res.render('deck', {data: cardList, deckList: decks, deckName: answer});
+            //console.log("answer");
+            console.log(cards);
+            //let deckN = deck[0].deckName;
+            return res.render('deck', {data: cardList, deckList: decks, deckName: answer, cards: cards});
+          })
         })
       })
     })
@@ -183,15 +187,22 @@ app.get('/deck', function(req, res)
 
     query3 = `SELECT deckName FROM Decks ORDER BY deckID`;
 
+    let query4;
+
+    query4 = `SELECT * FROM Cards`;
+
     db.pool.query(query1, function(error, rows, fields){
       let cardList = rows;
-      console.log(cardList);
       db.pool.query(query2, function(error, rows, fields){
         let decks = rows;
         db.pool.query(query3, function(error, rows, fields){
           let deck = rows;
-          let deckN = "NONE";
-            return res.render('deck', {data: cardList, deckList: decks, deckName: deckN});
+          db.pool.query(query4, function(error, rows, fields){
+              let cards = rows;
+              let deckN = "NONE";
+              console.log(cards);
+              return res.render('deck', {data: cardList, deckList: decks, deckName: deckN, cards: cards});
+          })
         })
       })
     })

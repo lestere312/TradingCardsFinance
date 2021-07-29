@@ -54,7 +54,13 @@
   <form class="addCard" method="post" action="addCard">
     <h3>Add Card</h3><br>
     <label for="Card_Name">Card Name:</label>
-    <input type="text" id="Card_Name" name="Card_Name">
+    <select id="Card_Name" name="Card_Name">
+        <option value="">Select Card</option>
+        {{#each cards}}
+        <option value="{{this.cardName}}">{{this.cardName}}</option>
+        {{/each}}
+    </select>
+
     <label for="Quantity">Quantity:</label>
     <input type="text" id="Quantity" name="Quantity">
     <label for="Deck">Deck:</label>
