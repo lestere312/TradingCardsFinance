@@ -8,7 +8,7 @@
 <body>
 
   <div class="dropdown">
-  <span>DeckName : {{deckName}}</span>
+  <span>DeckName : {{deckName.deckName}}</span>
   <div class="dropdown-content">
     {{#each deckList}}
     <form class="{{this.deckName}}" action="Deck">
@@ -21,7 +21,10 @@
   </div>
 </div>
 <div class="dropdown">
-  <a>Delete Deck</a>
+  <form id="deleteDeck" method="post" action="deleteDeck">
+    <input type = "hidden" name = "deck_Name" value = "{{deckName.deckID}}" />
+    <input type="submit" value="Delete Deck"><br>
+  </form>
 </div>
 
 

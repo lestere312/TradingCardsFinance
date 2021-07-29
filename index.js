@@ -70,6 +70,22 @@ app.post('/addDeck', function(req, res)
 
 });
 
+app.post('/deleteDeck', function(req, res)
+{
+  console.log("poop");
+  let data = req.body;
+  let deckName = data.deck_Name;
+  console.log(data);
+  console.log(deckName);
+  console.log("deckName");
+  res.redirect('/Deck');
+  query1 = `DELETE FROM Decks WHERE deckID = ${deckName}`;
+  db.pool.query(query1, function(error, rows, fields){
+
+   })
+   res.redirect('/Deck');
+});
+
 app.post('/addCard', function(req, res)
 {
   let data = req.body;
@@ -136,7 +152,7 @@ app.get('/deck', function(req, res)
           //console.log("answer");
           //console.log(answer);
           //let deckN = deck[0].deckName;
-          return res.render('deck', {data: cardList, deckList: decks, deckName: answer.deckName});
+          return res.render('deck', {data: cardList, deckList: decks, deckName: answer});
         })
       })
     })
