@@ -72,7 +72,6 @@ app.post('/addDeck', function(req, res)
 
 app.post('/deleteDeck', function(req, res)
 {
-  console.log("poop");
   let data = req.body;
   let deckName = data.deck_Name;
   console.log(data);
@@ -88,7 +87,6 @@ app.post('/deleteDeck', function(req, res)
 
 app.post('/deleteCard', function(req, res)
 {
-  console.log("poop");
   let data = req.body;
   let cardName = data.cardName;
   let deckName = data.deckName;
@@ -225,6 +223,40 @@ app.get('/account', function(req, res)
   }
 
             return res.render('account');
+});
+
+app.post('/addCardData', function(req, res)
+{
+  console.log(Object.keys(req.body).length);
+  if(Object.keys(req.body).length > 2){
+    let data = req.body;
+    let cardName = data.Card_Name;
+    let description = data.Description;
+    let price = data.Price;
+    let forSale = data.ForSale;
+    let forSaleAnswer = "";
+    if(forSale){
+      forSaleAnswer = "Yes";
+    }else{
+      forSaleAnswer = "No";
+    }
+    console.log(cardName);
+    console.log(price);
+    console.log(forSale);
+    query1 = `INSERT INTO Cards(cardName, cardDescripstion, cardPrice, cardForSale) VALUES ('${cardName}','${description}',${price},'${forSaleAnswer}')`;
+      db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+          console.log(error);
+        }else{
+          res.redirect('/Cards');
+        }
+      })
+
+  }else{
+    console.log("Not enough info");
+    res.redirect('/Cards');
+  }
+
 });
 
 app.get('/accountCreation', function(req, res)
