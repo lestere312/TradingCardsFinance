@@ -250,19 +250,24 @@ app.get('/login', function(req, res)
 
 app.get('/account', function(req, res)
 {
-  let data = req.query;
-  console.log(data);
-  let deckName = data.Deck_Name;
-  let collectionName = data.Collection_Name;
-  if(deckName != undefined){
-    console.log(deckName);
-  }
+  // let data = req.query;
+  // console.log(data);
+  // let deckName = data.Deck_Name;
+  // let collectionName = data.Collection_Name;
+  // if(deckName != undefined){
+  //   console.log(deckName);
+  // }
+  //
+  // if(collectionName != undefined){
+  //   console.log(collectionName);
+  // }
 
-  if(collectionName != undefined){
-    console.log(collectionName);
-  }
+  query1 = `SELECT * FROM Accounts`;
+  db.pool.query(query1, function(error, rows, fields){
+    let accountList = rows;
+    return res.render('account', {data: accountList});
+  })
 
-            return res.render('account');
 });
 
 app.post('/addCardData', function(req, res)
