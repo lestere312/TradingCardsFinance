@@ -53,6 +53,35 @@ app.get('/cards', function(req, res)
   }
 });
 
+app.post('/updateCard', function(req, res)
+{
+  let data = req.body;
+  console.log(data);
+  console.log("data");
+  let cardName = data.Card_Name;
+  let description= data.Description;
+  let price= data.Price;
+  let forSale = data.ForSale;
+  let forSaleAnswer = "";
+  if(forSale){
+    forSaleAnswer = "Yes";
+  }else{
+    forSaleAnswer = "No";
+  }
+
+  query1 = `SELECT cardID FROM Cards WHERE cardName =  '${cardName}'`;
+  db.pool.query(query1, function(error, rows, fields){
+    let temp = rows;
+    let cardid = temp[0].cardID;
+    query2 = `UPDATE Cards SET cardName='${cardName}',cardDescripstion='${description}',cardPrice='${price}',cardForSale='${forSaleAnswer}' WHERE cardID = ${cardid}`;
+    db.pool.query(query2, function(error, rows, fields){
+
+     })
+   })
+  res.redirect('/Cards');
+
+});
+
 app.post('/addDeck', function(req, res)
 {
   let data = req.body;
@@ -247,9 +276,9 @@ app.post('/addCardData', function(req, res)
     let forSale = data.ForSale;
     let forSaleAnswer = "";
     if(forSale){
-      forSaleAnswer = "Yes";
+      forSaleAnswer = "yes";
     }else{
-      forSaleAnswer = "No";
+      forSaleAnswer = "no";
     }
     console.log(cardName);
     console.log(price);

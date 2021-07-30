@@ -42,3 +42,20 @@
   <input type="checkbox" id="ForSale" name="ForSale">
   <input type="submit" value="Submit">
 </form>
+
+<form class="updateCard" method="post" action="updateCard">
+  <h3>Update Card</h3><br>
+  <select id="Card_Name" name="Card_Name">
+      <option value="">Select Card</option>
+      {{#each data}}
+      <option value="{{this.cardName}}">{{this.cardName}}</option>
+      {{/each}}
+  </select>
+  <label for="Description">Description:</label>
+  <input type="text" id="Description" name="Description">
+  <label for="Price">Price:</label>
+  <input type="text" id="Price" name="Price">
+  <label for="ForSale">For Sale:</label>
+  <input type="checkbox" id="ForSale" name="ForSale">
+  <input type="submit" value="Submit">
+</form>

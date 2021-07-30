@@ -4,7 +4,7 @@ CREATE TABLE `Accounts` (
   `userID` int(10) NOT NULL AUTO_INCREMENT,
   `userName` varchar(20) NOT NULL UNIQUE,
 	`userPassword` varchar(20) NOT NULL,
-	`userEmail` varchar(20) NOT NULL UNIQUE,
+	`userEmail` varchar(30) NOT NULL UNIQUE,
   PRIMARY KEY (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
