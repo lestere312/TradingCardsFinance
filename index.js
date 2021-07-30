@@ -87,16 +87,21 @@ app.post('/addDeck', function(req, res)
   let data = req.body;
   let deckName = data.deck_name;
   let userName = data.user;
-
-  query1 = `INSERT INTO Decks (userID, deckName) VALUES (${userName}, '${deckName}')`;
-  db.pool.query(query1, function(error, rows, fields){
-    if (error) {
-      console.log(error);
-    }else{
-      res.redirect('/Deck');
-    }
+  query1 = `SELECT userID FROM Accounts WHERE userName = '${userName}'`;
+    db.pool.query(query1, function(error, rows, fields){
+    let name = rows;
+    console.log(name[0].userID);
+    console.log("name");
+    let nameAnwser = name[0].userID
+      query2 = `INSERT INTO Decks (userID, deckName) VALUES (${nameAnwser}, '${deckName}')`;
+      db.pool.query(query2, function(error, rows, fields){
+        if (error) {
+          console.log(error);
+        }else{
+          res.redirect('/Deck');
+        }
+      });
   });
-
 });
 
 app.post('/deleteDeck', function(req, res)
@@ -107,10 +112,13 @@ app.post('/deleteDeck', function(req, res)
   console.log(deckName);
   console.log("deckName");
   //res.redirect('/Deck');
-  query1 = `DELETE FROM Decks WHERE deckID = ${deckName}`;
+  query1 = `DELETE FROM DeckCards WHERE deckID = ${deckName}`;
   db.pool.query(query1, function(error, rows, fields){
+    query2 = `DELETE FROM Decks WHERE deckID = ${deckName}`;
+    db.pool.query(query2, function(error, rows, fields){
 
-   })
+    })
+  })
    res.redirect('/Deck');
 });
 
@@ -269,6 +277,25 @@ app.get('/account', function(req, res)
   })
 
 });
+
+app.post('/addAccount', function(req, res)
+{
+  let data = req.body;
+  let account = data.Account_Name;
+  let password = data.Password;
+  let email = data.Email;
+
+    query2 = `INSERT INTO Accounts (userName, userPassword, userEmail) VALUES ('${account}','${password}', '${email}')`;
+    db.pool.query(query2, function(error, rows, fields){
+      if (error) {
+        console.log(error);
+      }else{
+        res.redirect('/Account');
+      }
+    });
+
+});
+
 
 app.post('/addCardData', function(req, res)
 {

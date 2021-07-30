@@ -65,9 +65,13 @@
   {{/each}}
 
 </table>
-<form class="addCollection" action="Account">
-  <h3>Create New Collection</h3><br>
-  <label for="Collection_Name">Collection Name:</label>
-  <input type="text" id="newCollectionName" name="Collection_Name">
+<form class="addAccount" method="post" action="addAccount">
+  <h3>Create New Account</h3><br>
+  <label for="Account_Name">Account Name:</label>
+  <input type="text" id="Account_Name" name="Account_Name">
+  <label for="Password">Password:</label>
+  <input type="text" id="Password" name="Password">
+  <label for="Email">Email:</label>
+  <input type="text" id="Email" name="Email">
   <input type="submit" value="Create">
 </form>
