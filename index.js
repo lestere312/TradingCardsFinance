@@ -199,6 +199,23 @@ app.post('/deleteDeck', function(req, res)
    res.redirect('/Deck');
 });
 
+app.post('/deleteCollection', function(req, res)
+{
+  let data = req.body;
+  let collectionName = data.collectionName;
+
+  query1 = `DELETE FROM CollectionCards WHERE collectionID = ${collectionName}`;
+  db.pool.query(query1, function(error, rows, fields){
+    query2 = `DELETE FROM Collections WHERE CollectionID = ${collectionName}`;
+    db.pool.query(query2, function(error, rows, fields){
+
+    })
+  })
+   res.redirect('/Collection');
+});
+
+
+
 app.post('/deleteDeckcard', function(req, res)
 {
   let data = req.body;
@@ -343,20 +360,34 @@ app.get('/collection', function(req, res)
 {
   if(Object.keys(req.query).length != 0){
     let query1;
-    query1 = `SELECT * FROM Cards JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID AND collectionID = ${req.query.collectionName}`;
+    query1 = `SELECT * FROM Cards JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID AND collectionName = ${req.query.collectionName}`;
     let query2;
-    query2 = `SELECT deckName, deckID FROM Decks`;
+    query2 = `SELECT collectionName, collectionID FROM Collections`;
     let query3;
-    query3 = `SELECT deckName, deckID FROM Decks ORDER BY deckID`;
+    query3 = `SELECT collectionName, collectionID FROM Collections ORDER BY collectionID`;
     let query4;
     query4 = `SELECT * FROM Cards`;
 
     db.pool.query(query1, function(error, rows, fields){
       let cardList = rows;
       console.log(cardList);
-      console.log("cardList");
-      return res.render('collection', {data: cardList});
-
+      db.pool.query(query2, function(error, rows, fields){
+        let collections = rows;
+        db.pool.query(query3, function(error, rows, fields){
+          let collections_ordered = rows;
+          db.pool.query(query4, function(error, rows, fields){
+            let all_cards = rows;
+            let answer;
+            for(let i = 0; i < collections_ordered.length; i++){
+              if(collections_ordered[i].deckID == req.query.deckName){
+                answer = collections_ordered[i];
+              }
+            }
+            //let deckN = deck[0].deckName;
+            return res.render('Collection', {data: cardList, collectionList: collections, collectionName: answer, cards: all_cards});
+          })
+        })
+      })
     })
   }else{
     let query1;
