@@ -10,13 +10,22 @@
 <body>
 
   <div class="dropdown">
-  <span>Select Collection</span>
+  <span>Select Collection : {{collectionName.collectionName}}</span>
   <div class="dropdown-content">
-    <a href=Collection>Main</a>
+    {{#each collectionList}}
+    <form class="{{this.collectionName}}" action="Collection">
+      {{this.collectionName}}
+      <input type = "hidden" name = "collectionName" value = "{{this.collectionID}}" />
+      <input type="submit" value="Go"><br>
+    </form>
+    {{/each}}
+    </div>
   </div>
-</div>
 <div class="dropdown">
-  <a>Delete Collection</a>
+  <form id="deleteCollection" method="post" action="deleteCollection">
+    <input type = "hidden" name = "collectionName" value = "{{collectionName.collectionID}}" />
+    <input type="submit" value="Delete Current Collection"><br>
+  </form>
 </div>
 
 
@@ -34,10 +43,12 @@
     {{/each}}
 
   </table>
-  <form class="addCollection" action="Account">
+  <form id="addCollection" method="post" action="addCollection">
     <h3>Create New Collection</h3><br>
-    <label for="Collection_Name">Collection Name:</label>
-    <input type="text" id="newCollectionName" name="Collection_Name">
+    <label for="newCollectionName">Collection Name:</label>
+    <input type="text" id="newCollectionName" name="newCollectionName">
+    <label for="user">Username:</label>
+    <input type="text" id="user" name="user">
     <input type="submit" value="Create">
   </form>
 

@@ -104,6 +104,27 @@ app.post('/addDeck', function(req, res)
   });
 });
 
+app.post('/addCollection', function(req, res)
+{
+  let collectionName = req.body.newCollectionName;
+  let userName = req.body.user;
+  query1 = `SELECT userID FROM Accounts WHERE userName = '${userName}'`;
+    db.pool.query(query1, function(error, rows, fields){
+    let names = rows;
+    console.log(names[0].userID);
+    console.log("name");
+    let user = names[0].userID
+      query2 = `INSERT INTO Collections (userID, collectionName) VALUES (${user}, '${collectionName}')`;
+      db.pool.query(query2, function(error, rows, fields){
+        if (error) {
+          console.log(error);
+        }else{
+          res.redirect('/Collection');
+        }
+      });
+  });
+});
+
 app.post('/deleteAccount', function(req, res)
 {
   let data = req.body;
@@ -339,7 +360,7 @@ app.get('/collection', function(req, res)
     })
   }else{
     let query1;
-    query1 = "SELECT * FROM Cards JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID AND collectionID = 1";
+    query1 = "SELECT * FROM Cards JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID";
 
 
     db.pool.query(query1, function(error, rows, fields){
