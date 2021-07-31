@@ -178,7 +178,7 @@ app.post('/deleteDeck', function(req, res)
    res.redirect('/Deck');
 });
 
-app.post('/deleteDeckCard', function(req, res)
+app.post('/deleteDeckcard', function(req, res)
 {
   let data = req.body;
   let cardName = data.cardName;
@@ -194,7 +194,7 @@ app.post('/deleteDeckCard', function(req, res)
    res.redirect('/Deck');
 });
 
-app.post('/deleteCollectionCard', function(req, res)
+app.post('/deleteCollectioncard', function(req, res)
 {
   let data = req.body;
   let cardName = data.cardName;
