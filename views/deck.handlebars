@@ -7,25 +7,24 @@
 
 <body>
 
-  <div class="dropdown">
-  <span>DeckName : {{deckName.deckName}}</span>
-  <div class="dropdown-content">
-    {{#each deckList}}
-    <form class="{{this.deckName}}" action="Deck">
-      {{this.deckName}}
-      <input type = "hidden" name = "deckName" value = "{{this.deckID}}" />
-      <input type="submit" value="Go"><br>
-    </form>
-    {{/each}}
 
-  </div>
-</div>
 <div class="dropdown">
   <form id="deleteDeck" method="post" action="deleteDeck">
     <input type = "hidden" name = "deck_Name" value = "{{deckName.deckID}}" />
     <input type="submit" value="Delete Current Deck"><br>
   </form>
 </div>
+
+{{#each deckList}}
+<div>
+<form class="{{this.deckName}}" action="Deck">
+  {{this.deckName}}
+  <input type = "hidden" name = "deckName" value = "{{this.deckID}}" />
+  <input type="submit" value="Go"><br>
+</form>
+</div>
+{{/each}}
+
 
 
   <table style="width:100%">
@@ -41,7 +40,9 @@
       {{> deckCard}}
     {{/each}}
   </table>
-
+  <div class="dropdown">
+    <span>DeckName : {{deckName.deckName}}</span>
+  </div>
   <form id="addDeck" method="post" action="addDeck">
     <h3>Create New Deck</h3><br>
     <label for="deck_name">Deck Name:</label>
