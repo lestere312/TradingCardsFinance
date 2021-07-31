@@ -9,24 +9,6 @@
 
 <body>
 
-  <div class="dropdown">
-  <span>Select Collection : {{collectionName.collectionName}}</span>
-  <div class="dropdown-content">
-    {{#each collectionList}}
-    <form class="{{this.collectionName}}" action="Collection">
-      {{this.collectionName}}
-      <input type = "hidden" name = "collectionName" value = "{{this.collectionID}}" />
-      <input type="submit" value="Go"><br>
-    </form>
-    {{/each}}
-    </div>
-  </div>
-<div class="dropdown">
-  <form id="deleteCollection" method="post" action="deleteCollection">
-    <input type = "hidden" name = "collectionName" value = "{{collectionName.collectionID}}" />
-    <input type="submit" value="Delete Current Collection"><br>
-  </form>
-</div>
 
 
   <table style="width:100%">
@@ -35,6 +17,7 @@
       <th>Card Name</th>
       <th>Description</th>
       <th>Price</th>
+      <th>Collection</th>
       <th>For Sale</th>
       <th>Delete</th>
     </tr>
@@ -48,18 +31,43 @@
     <label for="newCollectionName">Collection Name:</label>
     <input type="text" id="newCollectionName" name="newCollectionName">
     <label for="user">Username:</label>
-    <input type="text" id="user" name="user">
+    <select id="user" name="user">
+        <option value="">Select User</option>
+        {{#each accountsList}}
+        <option value="{{this.userID}}">{{this.userName}}</option>
+        {{/each}}
+    </select>
     <input type="submit" value="Create">
   </form>
 
-  <form class="addCard" action="Collection">
+  <form class="addCard" method="post" action="addCollectionCard">
     <h3>Add Card</h3><br>
     <label for="Card_Name">Card Name:</label>
-    <input type="text" id="Card_Name" name="Card_Name">
+    <select id="Card_Name" name="Card_Name">
+        <option value="">Select Card</option>
+        {{#each cardlist2}}
+        <option value="{{this.cardID}}">{{this.cardName}}</option>
+        {{/each}}
+    </select>
     <label for="Quantity">Quantity:</label>
     <input type="text" id="Quantity" name="Quantity">
+    <label for="newCollectionName">Collection:</label>
+    <select id="newCollectionName" name="newCollectionName">
+        <option value="">Select Collection</option>
+        {{#each collectionList}}
+        <option value="{{this.collectionID}}">{{this.collectionName}}</option>
+        {{/each}}
+    </select>
     <input type="submit" value="Submit">
+
   </form>
-  <tr>
-    <p style="color:blue">Total collection cost: $180,369.68</p>
-  </tr>
+  <table style="width:100%">
+    <tr>
+      <th>Collection Owner:</th>
+      <th>Collection:</th>
+    </tr>
+    {{#each accountsElement}}
+      {{> collections}}
+    {{/each}}
+
+  </table>

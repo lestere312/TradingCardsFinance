@@ -1,0 +1,10 @@
+<tr>
+  <th>{{this.userName}}</th>
+  <th>{{this.collectionName}}</th>
+  <td>
+    <form class="deleteButton" method="post" action="deleteCollection">
+      <input type = "hidden" name = "collectionName" value = "{{this.collectionID}}" />
+      <input type="submit" value="Delete">
+    </form>
+  </td>
+</tr>
