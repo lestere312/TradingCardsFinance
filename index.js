@@ -104,6 +104,62 @@ app.post('/addDeck', function(req, res)
   });
 });
 
+app.post('/deleteAccount', function(req, res)
+{
+  let data = req.body;
+  let userid = data.userid;
+  console.log(data);
+  console.log(userid);
+  console.log("userid");
+  //res.redirect('/Deck');
+  query5 = `SELECT collectionID FROM Collections WHERE userID = ${userid}`;
+  db.pool.query(query5, function(error, rows, fields){
+    let collectionIDS = rows;
+    query4 = `SELECT deckID FROM Decks WHERE userID = ${userid}`;
+    db.pool.query(query4, function(error, rows, fields){
+      let deckIDS = rows;
+      if(deckIDS){
+        console.log(deckIDS);
+        console.log(deckIDS[0]);
+        console.log("deckIDS");
+        for(let i = 0; i < deckIDS.length; i++){
+          let temp = deckIDS[i].deckID;
+          console.log(temp);
+          console.log("temp");
+          query1 = `DELETE FROM DeckCards WHERE deckID = ${temp}`;
+          db.pool.query(query1, function(error, rows, fields){
+
+          })
+        }
+      }
+      if(collectionIDS){
+        for(let i = 0; i < collectionIDS.length; i++){
+          let temp = collectionIDS[i].collectionID;
+          console.log(temp);
+          console.log("tempcollectionID");
+          query1 = `DELETE FROM CollectionCards WHERE collectionID = ${temp}`;
+          db.pool.query(query1, function(error, rows, fields){
+
+          })
+        }
+      }
+        query2 = `DELETE FROM Decks WHERE userID = ${userid}`;
+        db.pool.query(query2, function(error, rows, fields){
+          query6 = `DELETE FROM Collections WHERE userID = ${userid}`;
+          db.pool.query(query6, function(error, rows, fields){
+              query3 = `DELETE FROM Accounts WHERE userID = ${userid}`;
+              db.pool.query(query3, function(error, rows, fields){
+
+
+              })
+
+          })
+        })
+    })
+  })
+   res.redirect('/Account');
+});
+
 app.post('/deleteDeck', function(req, res)
 {
   let data = req.body;
@@ -248,9 +304,36 @@ app.get('/deck', function(req, res)
 
 app.get('/collection', function(req, res)
 {
-            return res.render('collection');
-});
+  if(Object.keys(req.query).length != 0){
+    let query1;
+    query1 = `SELECT * FROM Cards JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID AND collectionID = ${req.query.collectionName}`;
+    let query2;
+    query2 = `SELECT deckName, deckID FROM Decks`;
+    let query3;
+    query3 = `SELECT deckName, deckID FROM Decks ORDER BY deckID`;
+    let query4;
+    query4 = `SELECT * FROM Cards`;
 
+    db.pool.query(query1, function(error, rows, fields){
+      let cardList = rows;
+      console.log(cardList);
+      console.log("cardList");
+      return res.render('collection', {data: cardList});
+
+    })
+  }else{
+    let query1;
+    query1 = "SELECT * FROM Cards JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID AND collectionID = 1";
+
+
+    db.pool.query(query1, function(error, rows, fields){
+      let cardList = rows;
+      console.log(cardList);
+      console.log("cardList");
+      return res.render('collection', {data: cardList});
+    })
+  }
+});
 app.get('/login', function(req, res)
 {
             return res.render('login');

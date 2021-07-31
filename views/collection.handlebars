@@ -28,69 +28,10 @@
       <th>Price</th>
       <th>For Sale</th>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>Black Lotus</td>
-      <td>Edition:	Alpha<br>
-Type:	Artifact<br>
-Cast:<img style="margin:1px;" src="mana_0.png"><br>
-Rarity:	R<br>
-<img style="margin:1px;" src="tap.png">, Sacrifice Black Lotus: Add three mana of any one color to your mana pool.</td>
-      <td>$144999.99</td>
-      <td>NO</td>
-      <td><input type="submit" value="Remove"></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Bandlands</td>
-      <td>Edition:	Alpha<br>
-Type:	Land - Swamp Mountain<br>
-Cast:<br>
-Rarity:	R<br>
-<img style="margin:1px;" src="tap.png">: Add <img style="margin:1px;" src="mana_b.png">  or <img style="margin:1px;" src="mana_r.png"> to your mana pool.</td>
-      <td>$7499.99</td>
-      <td>YES</td>
-      <td><input type="submit" value="Remove"></td>
-    </tr>
-    <tr>
-    <td>14</td>
-    <td>Mountain</td>
-    <td>Edition:	Alpha<br>
-Type:	Land<br>
-Cast:<br>
-Rarity:	L<br>
-<img style="margin:1px;" src="mana_r.png"></br>
-</td>
-    <td>$69.99</td>
-    <td>YES</td>
-    <td><input type="submit" value="Remove"></td>
-  </tr>
-    <tr>
-    <td>11</td>
-    <td>Swamp</td>
-    <td>Edition:	Alpha<br>
-Type:	Land<br>
-Cast:<br>
-Rarity:	L<br>
-<img style="margin:1px;" src="mana_b.png"></br>
-</td>
-    <td>$89.99</td>
-    <td>YES</td>
-    <td><input type="submit" value="Remove"></td>
-  </tr>
-  <tr>
-  <td>4</td>
-  <td>Mind Twist</td>
-  <td>Edition:	Alpha<br>
-Type:	Land<br>
-Cast:<img style="margin:1px;" src="mana_b.png"><img style="margin:1px;" src="mana_x.png"><br>
-Rarity:	L<br>
-Target player discards X cards at random.</br>
-</td>
-  <td>$4599.99</td>
-  <td>YES</td>
-  <td><input type="submit" value="Remove"></td>
-</tr>
+    {{#each data}}
+      {{> deckCard}}
+    {{/each}}
+
   </table>
   <form class="addCollection" action="Account">
     <h3>Create New Collection</h3><br>
