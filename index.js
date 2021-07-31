@@ -115,6 +115,7 @@ app.post('/deleteAccount', function(req, res)
   query5 = `SELECT collectionID FROM Collections WHERE userID = ${userid}`;
   db.pool.query(query5, function(error, rows, fields){
     let collectionIDS = rows;
+    //delete deckCards
     query4 = `SELECT deckID FROM Decks WHERE userID = ${userid}`;
     db.pool.query(query4, function(error, rows, fields){
       let deckIDS = rows;
@@ -131,7 +132,7 @@ app.post('/deleteAccount', function(req, res)
 
           })
         }
-      }
+      }//delete collectionCards
       if(collectionIDS){
         for(let i = 0; i < collectionIDS.length; i++){
           let temp = collectionIDS[i].collectionID;
@@ -142,7 +143,7 @@ app.post('/deleteAccount', function(req, res)
 
           })
         }
-      }
+      }//delete entities
         query2 = `DELETE FROM Decks WHERE userID = ${userid}`;
         db.pool.query(query2, function(error, rows, fields){
           query6 = `DELETE FROM Collections WHERE userID = ${userid}`;
@@ -178,7 +179,7 @@ app.post('/deleteDeck', function(req, res)
    res.redirect('/Deck');
 });
 
-app.post('/deleteCard', function(req, res)
+app.post('/deleteDeckCard', function(req, res)
 {
   let data = req.body;
   let cardName = data.cardName;
