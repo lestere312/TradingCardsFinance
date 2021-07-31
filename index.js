@@ -178,7 +178,7 @@ app.post('/deleteDeck', function(req, res)
    res.redirect('/Deck');
 });
 
-app.post('/deleteCard', function(req, res)
+app.post('/deleteDeckCard', function(req, res)
 {
   let data = req.body;
   let cardName = data.cardName;
@@ -193,6 +193,22 @@ app.post('/deleteCard', function(req, res)
    })
    res.redirect('/Deck');
 });
+
+app.post('/deleteCollectionCard', function(req, res)
+{
+  let data = req.body;
+  let cardName = data.cardName;
+  let collectionName = data.collectionName;
+  console.log(data);
+  console.log(collectionName);
+  console.log("deletetee");
+  query1 = `DELETE FROM CollectionCards WHERE collectionID = ${collectionName} AND cardID = ${cardName}`;
+  db.pool.query(query1, function(error, rows, fields){
+
+   })
+   res.redirect('/Collection');
+});
+
 
 app.post('/addCard', function(req, res)
 {
