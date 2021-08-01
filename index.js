@@ -505,9 +505,4 @@ app.post('/addCardData', function(req, res)
 
 });
 
-app.get('/accountCreation', function(req, res)
-{
-            return res.render('accountCreation');
-});
-
 app.listen(port, () => console.log('server started on port:' + port));

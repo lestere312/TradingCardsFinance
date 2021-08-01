@@ -1,3 +1,89 @@
+--ACCOUNTS PAGE
+
+--Display Accounts
+SELECT * FROM Accounts;
+
+--Create new Account
+INSERT INTO Accounts (userName, userPassword, userEmail) VALUES ('${account}','${password}', '${email}');
+
+--Delete Account (Deleting everything associated with it as well)
+SELECT collectionID FROM Collections WHERE userID = ${userid};
+SELECT deckID FROM Decks WHERE userID = ${userid};
+
+DELETE FROM DeckCards WHERE deckID = ${temp};
+DELETE FROM CollectionCards WHERE collectionID = ${temp};
+DELETE FROM Decks WHERE userID = ${userid};
+DELETE FROM Collections WHERE userID = ${userid};
+DELETE FROM Accounts WHERE userID = ${userid};
+
+
+--DECK PAGE
+
+--Display Deck Page
+SELECT * FROM Cards JOIN DeckCards ON Cards.cardID = DeckCards.cardID AND deckID = ${req.query.deckName};
+SELECT deckName, deckID FROM Decks;
+SELECT deckName, deckID FROM Decks ORDER BY deckID;
+SELECT * FROM Cards;
+
+--Create New Deck
+SELECT userID FROM Accounts WHERE userName = '${userName}';
+INSERT INTO Decks (userID, deckName) VALUES (${nameAnwser}, '${deckName}');
+
+--Add Card into a Deck
+SELECT cardID FROM Cards WHERE cardName =  '${cardName}';
+INSERT INTO DeckCards (deckID, cardID, quantity) VALUES(${deck},${cardid}, ${quantity});
+
+--Delete Card from Deck
+DELETE FROM DeckCards WHERE deckID = ${deckName} AND cardID = ${cardName};
+
+--Delete Current Deck
+DELETE FROM DeckCards WHERE deckID = ${deckName};
+DELETE FROM Decks WHERE deckID = ${deckName};
+
+
+--COLLECTIONS PAGE
+
+--Display Collections Page
+SELECT * FROM Cards JOIN CollectionCards ON Cards.cardID = CollectionCards.cardID JOIN Collections ON CollectionCards.collectionID = Collections.collectionID;
+SELECT collectionName, collectionID FROM Collections;
+SELECT userName, userID FROM Accounts;
+SELECT collectionID, collectionName, userName FROM Collections JOIN Accounts ON Collections.userID = Accounts.userID;
+SELECT cardID, cardName FROM Cards;
+
+--Create New Collection
+SELECT userID FROM Accounts WHERE userID = '${userName}';
+INSERT INTO Collections (userID, collectionName) VALUES (${user}, '${collectionName}');
+
+--Add Card to a Collection
+INSERT INTO CollectionCards (collectionID, cardID, quantity) VALUES(${collectionName},${cardName}, ${quantity});
+
+--Delete Card from a Collection
+DELETE FROM CollectionCards WHERE collectionID = ${collectionName} AND cardID = ${cardName};
+
+--Delete a Collection
+DELETE FROM CollectionCards WHERE collectionID = ${collectionName} AND cardID = ${cardName};
+DELETE FROM Collections WHERE collectionID = ${collectionName};
+
+
+--CARDS PAGE
+
+--Display Cards Page
+SELECT * FROM Cards;
+
+--Search for Cards
+SELECT * FROM Cards WHERE cardName LIKE "${req.query.search}%" AND cardForSale = 'yes'; --or no if form box was unchecked
+
+--Add Card into Database
+INSERT INTO Cards(cardName, cardDescripstion, cardPrice, cardForSale) VALUES ('${cardName}','${description}',${price},'${forSaleAnswer}');
+
+--Update a card with its description and price
+SELECT cardID FROM Cards WHERE cardName =  '${cardName}';
+UPDATE Cards SET cardName='${cardName}',cardDescripstion='${description}',cardPrice='${price}',cardForSale='${forSaleAnswer}' WHERE cardID = ${cardid};
+
+
+
+
+/*
 --************************************************
 -- Accounts Page--
 --
@@ -170,3 +256,4 @@ AND deckID = 1
 
 SELECT deckName FROM `Decks`
 WHERE userID = 1
+*/
