@@ -311,7 +311,7 @@ app.get('/deck', function(req, res)
     let query2;
     query2 = `SELECT deckName, deckID FROM Decks`;
     let query3;
-    query3 = `SELECT * FROM Decks JOIN DeckCards ON Decks.deckID = DeckCards.deckID JOIN Accounts ON Decks.userID = Accounts.userID`;
+    query3 = `SELECT * FROM Decks JOIN Accounts ON Accounts.userID = Decks.userID `;
     let query4;
     query4 = `SELECT * FROM Cards`;
     let query5;
