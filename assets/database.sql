@@ -118,4 +118,12 @@ CREATE TABLE `CollectionCards` (
   CONSTRAINT `CollectionCards_ibfk_1` FOREIGN KEY (`collectionID`) REFERENCES `Collections` (`collectionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `CollectionCards` VALUES (1,1,1,3),(2,3,2,1),(3,2,4,2),(4,1,3,4), (5,4,2,1);
+INSERT  INTO `CollectionCards` (`collectionID`, `cardID`, `quantity`) VALUES
+(1,1,3),
+(3,2,1),
+(2,4,2),
+(1,3,4),
+(3,5,3),
+(2,3,5),
+(4,7,3),
+(4,2,1);
