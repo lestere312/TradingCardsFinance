@@ -9,7 +9,10 @@ CREATE TABLE `Accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `Accounts` WRITE;
-INSERT INTO `Accounts` VALUES (1, 'Cake47', 'eggs#1', 'baking@yahoo.com'),(2, 'GnarlBurst', 'comsicChicken4', 'federalgrim@hotmail.com');
+INSERT INTO `Accounts` (`userName`, `userPassword`, `userEmail`) VALUES ('Cake47', 'eggs#1', 'baking@yahoo.com')
+,('GnarlBurst', 'comsicChicken4', 'federalgrim@hotmail.com')
+,('DarkLatern', 'Derkerlin', 'perfect123m@gmail.com')
+,('Woopsie', 'panecakes@31', 'liftergrim@gmail.com');
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `Collections`;
 
@@ -22,7 +25,11 @@ CREATE TABLE `Collections` (
   CONSTRAINT `Collections_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Accounts` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Collections` VALUES (1,1,'main'),(2,1,'main1'),(3,2,'main2'),(4,2,'main3'), (5,1,'main4');
+INSERT INTO `Collections` (`userID`, `collectionName`) VALUES (1,'main'),
+(2,'main1'),
+(3,'main2'),
+(4,'main3'),
+(3,'main4');
 
 
 DROP TABLE IF EXISTS `Decks`;
@@ -36,7 +43,14 @@ CREATE TABLE `Decks` (
   CONSTRAINT `Decks_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Accounts` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Decks` VALUES (1,2,'Caravan'),(2,1,'Mill'),(3,2,'cake'),(4,1,'cake2'), (5,1,'cake3');
+INSERT INTO `Decks` (`userID`, `deckName`) VALUES (2,'Caravan'),
+(1,'Mill'),
+(2,'Sultai Midrange'),
+(3,'Dredge'),
+(3,'Death and Taxes'),
+(4,'Infect'),
+(4,'Jeskai Control'),
+(1,'Oath of Druids');
 
 DROP TABLE IF EXISTS `Cards`;
 
@@ -73,7 +87,22 @@ CREATE TABLE `DeckCards` (
   CONSTRAINT `DeckCards_ibfk_1` FOREIGN KEY (`deckID`) REFERENCES `Decks` (`deckID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `DeckCards` VALUES (1,1,1,1),(2,1,2,3),(3,1,7,12),(4,1,8,10),(5,1,9,4);
+INSERT INTO `DeckCards` (`deckID`, `cardID`, `quantity`) VALUES
+(1,1,1),
+(1,2,3),
+(1,7,12),
+(1,8,10),
+(2,4,5),
+(4,7,2),
+(5,4,5),
+(3,1,1),
+(5,3,3),
+(6,8,4),
+(6,2,4),
+(7,5,2),
+(7,7,5),
+(8,6,3),
+(1,9,4);
 
 DROP TABLE IF EXISTS `CollectionCards`;
 

@@ -43,12 +43,19 @@
   <div class="dropdown">
     <span>DeckName : {{deckName.deckName}}</span>
   </div>
+  <div class="dropdown">
+    <span>UserName : {{deckName.userName}}</span>
+  </div>
   <form id="addDeck" method="post" action="addDeck">
     <h3>Create New Deck</h3><br>
     <label for="deck_name">Deck Name:</label>
     <input type="text" id="deck_name" name="deck_name">
     <label for="user">Username:</label>
-    <input type="text" id="user" name="user">
+    <select id="user" name="user">
+      {{#each accountsList}}
+      <option value="{{this.userID}}">{{this.userName}}</option>
+      {{/each}}
+    </select>
     <input type="submit" value="Create">
   </form>
 
